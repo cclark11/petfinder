@@ -1,6 +1,6 @@
 
-var PETFINDER_BASE_URL = 'http://api.petfinder.com/breed.list?callback=?';
-var PETS_BASE_URL = 'http://api.petfinder.com/pet.find?callback=?';
+var PETFINDER_BASE_URL = 'https://api.petfinder.com/breed.list?callback=?';
+var PETS_BASE_URL = 'https://api.petfinder.com/pet.find?callback=?';
 
 var baseQuery =  {
 		format:'json',
