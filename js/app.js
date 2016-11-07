@@ -46,12 +46,11 @@ function getPets (params, callback) {
 
 	$.getJSON(PETS_BASE_URL,query,callback)
 }
-
-function zipSubmit() {
-	$("#location").on('submit',function(e){
-		e.preventDefault();
+function zipSubmitCallback(e) {
+	e.preventDefault();
 		$("#petTable").empty();
 		var params = {
+			count:100,
 			location: $("#zipcode").val()
 		}
 
@@ -63,9 +62,11 @@ function zipSubmit() {
 		}
 		
 		getPets(params, displayPets);
-
-	});
 }
+function zipSubmit() {
+	$("#location").on('submit',zipSubmitCallback);
+}
+
 
 function displayPets(data) {
 	console.log(data);
@@ -84,18 +85,25 @@ function displayPets(data) {
 			}
 			var petPhoto="";
 			if (pet.media.photos) {
-				petPhoto='<img src="'+pet.media.photos.photo[0].$t + '">';
+				petPhoto='<img src="'+pet.media.photos.photo[3].$t + '">';
 			}
-				$("#petTable").append('<tr class="clickable-row" data-href="petdetail.html?petId='+pet.id.$t+'"><td>'+pet.name.$t
-					+'</td><td>'+petPhoto
-					+'</td><td>'+pet.sex.$t
-					+'</td><td>'+pet.age.$t
-					+'</td><td><ul>'+ petBreeds + '</ul>'
-					+'</td></a></tr>');
+				$("#petList").append('<div class="col-sm-6 col-md-4">'
+					+'<div class="thumbnail">'
+						+petPhoto
+						+'<div class="caption">'
+							+'<h2>'+pet.name.$t+'</h2>'
+							+'<p><b>Sex: </b>'+pet.sex.$t
+							+'<p><b>Age: </b>'+pet.age.$t+'</p>'
+							+'<p><b>Breed(s): </b></p>'
+							+'<ul>'+ petBreeds + '</ul>'
+							+'<p><a href="petdetail.html?petId='+pet.id.$t+'"><id="moreButton" class="btn btn-primary" role="button">See More</a></p>'
+						+'</div>'
+					+'</div>');
 		});
-		$(".clickable-row").on('click',function() {
+		/*$("#moreButton").on('click',function() {
         	window.location = $(this).data("href");
    		});
+   		*/
 	}
 	else{
 		$("#petList").hide();
