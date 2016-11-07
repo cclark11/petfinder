@@ -86,14 +86,16 @@ function displayPets(data) {
 			if (pet.media.photos) {
 				petPhoto='<img src="'+pet.media.photos.photo[0].$t + '">';
 			}
-				$("#petTable").append('<tr><td>'+pet.name.$t
+				$("#petTable").append('<tr class="clickable-row" data-href="petdetail.html?petId='+pet.id.$t+'"><td>'+pet.name.$t
 					+'</td><td>'+petPhoto
 					+'</td><td>'+pet.sex.$t
 					+'</td><td>'+pet.age.$t
 					+'</td><td><ul>'+ petBreeds + '</ul>'
-					+'</td><td>'+((pet.description.$t) ? pet.description.$t : "")
-					+'</td></tr>');
+					+'</td></a></tr>');
 		});
+		$(".clickable-row").on('click',function() {
+        	window.location = $(this).data("href");
+   		});
 	}
 	else{
 		$("#petList").hide();
@@ -103,4 +105,5 @@ function displayPets(data) {
 $(function() {
 	animalsChange();
 	zipSubmit();
+	
 });	
