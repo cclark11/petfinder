@@ -2,11 +2,11 @@ h1 {
 	padding-top: 40px;
 }
 .pawprint {
-	height:50px;
+	height:45px;
 }
 .form-group {
 	margin-top: 3%;
-	width:30%;
+	width:255px;
 }
 #animals {
 	margin-top:15px;
@@ -29,15 +29,33 @@ h1 {
 	display:none;
 }
 
-tr.clickable-row { 
-	cursor: pointer; 
-}
-th {
-    background-color: #337ab7;
-    color: white;
-} 
 ul {
   list-style-type: none;
   padding:0;
   margin:0;
+}
+
+h2{
+	text-align: center;
+}
+
+.pic {
+	height: 300px;
+	background-repeat: no-repeat;
+}
+
+.petName {
+	max-height: 36px;
+	overflow: ellipsis;
+}
+
+.thumbnail {
+	height: 500px;
+}
+
+.thumbnail:hover {
+	background-color: #DCDCDC;
+}
+a:hover {
+	text-decoration: none;
 }

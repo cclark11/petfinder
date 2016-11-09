@@ -13,35 +13,52 @@
 </head>
 <body>
 <div class="container">
-	<button type="button" class="btn btn-default" aria-label="Left Align">
+<div id ="back" class="col-md-5">
+	<a href="javascript:history.back()"><button type="button" class="btn btn-default" aria-label="Left Align">
   	<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-  	<a href="javascript:history.back()">Go Back</a>
-	</button>
-	<h1 id="name"></h1>
-	<div id="breeds"></div>
-	<div id="sex"></div>
-	<div id="age"></div>
-	<div id="photo-carousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
-		<ol class="carousel-indicators"></ol>
-
-		<!-- Wrapper for slides -->
-		<div class="carousel-inner" role="listbox">
-			
-		</div>
-
-		<!-- Controls -->
-		<a class="left carousel-control" href="#photo-carousel" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#photo-carousel" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
+  	Go Back
+	</button></a>
 	</div>
-	<div id="description"></div>
-	<div id="map"></div>
+	<h1 id="name" class="col-md-7"></h1>
+	<div class="row">
+		<div class="col-md-6" id="petSummary">
+			<div id ="status"><b class="col-md-4 align-right">Status: </b></div>
+			<div id="breeds"><b class="col-md-4 align-right">Breed(s): </b></div>
+			<div id="sex"><b class="col-md-4 align-right">Sex: </b></div>
+			<div id="age"><b class="col-md-4 align-right">Age: </b></div>
+			<div id="phone" class="hidden"><b class="col-md-4 align-right">Phone: </b></div>
+			<div id="email" class="hidden"><b class="col-md-4 align-right">Email: </b></div>
+			<div id="hasShots" class="hidden"><b class="col-md-4 align-right">Has Shots: </b></div>
+			<div id="altered" class="hidden"><b class="col-md-4 align-right">Altered: </b></div>		
+			<div id="housetrained" class="hidden"><b class="col-md-4 align-right">Housetrained: </b></div><br>
+			<div id="description" class="row col-md-12"></div>
+		</div>
+		<div id="map" class="col-md-6 col-sm-12"></div>
+	</div>
+	<div class="row">
+		<div id="photo-carousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators"></ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				
+			</div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#photo-carousel" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#photo-carousel" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	
+
+
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -9,7 +9,8 @@ var baseQuery =  {
 
 function displayMap(){
 	map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15
+          zoom: 15,
+          scrollwheel:false
         });
 }
 function addMarkerToMap(contact){
@@ -55,8 +56,6 @@ function getPetDetails(petId){
 	$.getJSON(PET_DETAIL_BASE_URL,query,displayPetDetails);
 }
 
-
-
 function displayPetDetails(data) {
 	var petPhotos="";
 	var firstPic = true;
@@ -70,13 +69,13 @@ function displayPetDetails(data) {
 				firstPic = false;
 			}
 			petPhotos+='<div class="item'+active+'">'+
-			'<img src="'+data.petfinder.pet.media.photos.photo[i].$t+'"></div>';
+			'<img class="petImg" src="'+data.petfinder.pet.media.photos.photo[i].$t+'"></div>';
 			photoIndicators+='<li data-target="#photo-carousel" data-slide-to="'
 			+j+'" class="'+active+'"></li>';
 			j+=1;
 		}
 	}
-	var petBreeds="Breed(s): ";
+	var petBreeds='';
 		if (data.petfinder.pet.breeds.breed.length>1) {
 			for(i=0; i<data.petfinder.pet.breeds.breed.length; i++) {
 				if(i<data.petfinder.pet.breeds.breed.length){
@@ -90,14 +89,60 @@ function displayPetDetails(data) {
 			else {
 				petBreeds += data.petfinder.pet.breeds.breed.$t;
 			}
-	$("#name").append(data.petfinder.pet.name.$t);
+	
+	var petStatus = "";
+		if(data.petfinder.pet.status.$t=="A"){
+			petStatus="Adoptable";
+		}
+		else{
+			petStatus="Not Adoptable";
+		}
+	if(data.petfinder.pet.contact.phone.$t){
+		$("#phone").removeClass("hidden");
+	}
+	if(data.petfinder.pet.contact.email.$t){
+		$("#email").removeClass("hidden");
+	}
+	if (data.petfinder.pet.options){
+		$("#hasShots").removeClass("hidden");
+		$("#altered").removeClass("hidden");
+		$("#housetrained").removeClass("hidden");
+		var hasShots = "";
+			if(data.petfinder.pet.options.length >= 1 && data.petfinder.pet.options.option[0].$t=="hasShots"){
+				hasShots="Yes";
+			}
+			else{
+				hasShots="No";
+			}
+		var altered = "";
+			if(data.petfinder.pet.options.length >= 2 && data.petfinder.pet.options.option[1].$t=="altered"){
+				altered="Yes";
+			}
+			else{
+				altered="No";
+			}
+		var housetrained = "";
+			if(data.petfinder.pet.options.length >= 3 && data.petfinder.pet.options.option[2].$t=="housetrained"){
+				housetrained="Yes";
+			}
+			else{
+				housetrained="No";
+			}
+	}
+	$("#name").append('<img src="images/pawprint.png" class="pawprint"> '+data.petfinder.pet.name.$t+' <img src="images/pawprint.png" class="pawprint">');
 	$(".carousel-indicators").append(photoIndicators);
 	$(".carousel-inner").append(petPhotos);
+	$("#status").append(petStatus)
 	$("#breeds").append(petBreeds);
-	$("#sex").append("Sex: "+data.petfinder.pet.sex.$t);
-	$("#age").append("Age: "+data.petfinder.pet.age.$t);
-	$("#description").append((data.petfinder.pet.description.$t) ? data.petfinder.pet.description.$t : "");
+	$("#sex").append(data.petfinder.pet.sex.$t);
+	$("#age").append(data.petfinder.pet.age.$t);
+	$("#phone").append(data.petfinder.pet.contact.phone.$t);
+	$("#email").append(data.petfinder.pet.contact.email.$t);
+	$("#hasShots").append(hasShots);
+	$("#altered").append(altered);
+	$("#housetrained").append(housetrained);
 	$('.carousel').carousel();
+	$("#description").append((data.petfinder.pet.description.$t) ? data.petfinder.pet.description.$t : "");
 	addMarkerToMap(data.petfinder.pet.contact);
 }
 

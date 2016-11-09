@@ -1,8 +1,35 @@
 #photo-carousel{
-	width:500px;
-	height:375px;
+	margin: 0 auto;
+	width: 50%;
+	height:100%;
+	margin-top:20px;
+	margin-bottom:20px;
+	object-fit: contain;
 }
 #map {
     height: 400px;
-    width: 100%;
+
+    margin-top:25px;
+    margin-bottom:40px;
+}
+#description{
+	text-align:justify;
+	text-justify:inter-word;
+}
+.pawprint {
+	height:40px;
+}
+
+.align-right {
+	text-align: right;
+}
+
+#back {
+	margin-top: 25px;
+}
+#petSummary{
+	margin-top: 20px;
+}
+.carousel-inner img {
+  margin: auto;
 }

@@ -74,36 +74,35 @@ function displayPets(data) {
 
 		$("#petList").show();
 		data.petfinder.pets.pet.forEach(function(pet){
-			var petBreeds="";
-			if (pet.breeds.breed.length>1) {
-				for(var i=0; i<pet.breeds.breed.length; i++) {
-					petBreeds += '<li>'+pet.breeds.breed[i].$t+'</li>';
-				}
-			}
-			else {
-				petBreeds= '<li>'+pet.breeds.breed.$t+'</li>';
-			}
-			var petPhoto="";
 			if (pet.media.photos) {
-				petPhoto='<img src="'+pet.media.photos.photo[3].$t + '">';
+
+				var petBreeds="";
+				if (pet.breeds.breed.length>1) {
+					for(var i=0; i<pet.breeds.breed.length; i++) {
+						petBreeds += '<li>'+pet.breeds.breed[i].$t+'</li>';
+					}
+				}
+				else {
+					petBreeds= '<li>'+pet.breeds.breed.$t+'</li>';
+				}
+				var petPhoto="";
+				if (pet.media.photos) {
+					petPhoto='<div class="pic" style="background-image: url(\''+pet.media.photos.photo[2].$t + '\')"></div>';
+				}
+					$("#petList").append('<div class="col-sm-6 col-md-4">'
+						+'<a href="petdetail.html?petId='+pet.id.$t+'"><div class="thumbnail">'
+							+petPhoto
+							+'<div class="caption">'
+								+'<h2 class="petName">'+pet.name.$t.substr(0,16)+'</h2>'
+								+'<div><b>Sex: </b>'+pet.sex.$t+'</div>'
+								+'<div><b>Age: </b>'+pet.age.$t+'</div>'
+								+'<div><b>Breed(s): </b></div>'
+								+'<ul>'+ petBreeds + '</ul>'
+							+'</div></a>'
+						+'</div>');
 			}
-				$("#petList").append('<div class="col-sm-6 col-md-4">'
-					+'<div class="thumbnail">'
-						+petPhoto
-						+'<div class="caption">'
-							+'<h2>'+pet.name.$t+'</h2>'
-							+'<p><b>Sex: </b>'+pet.sex.$t
-							+'<p><b>Age: </b>'+pet.age.$t+'</p>'
-							+'<p><b>Breed(s): </b></p>'
-							+'<ul>'+ petBreeds + '</ul>'
-							+'<p><a href="petdetail.html?petId='+pet.id.$t+'"><id="moreButton" class="btn btn-primary" role="button">See More</a></p>'
-						+'</div>'
-					+'</div>');
 		});
-		/*$("#moreButton").on('click',function() {
-        	window.location = $(this).data("href");
-   		});
-   		*/
+
 	}
 	else{
 		$("#petList").hide();
