@@ -108,21 +108,21 @@ function displayPetDetails(data) {
 		$("#altered").removeClass("hidden");
 		$("#housetrained").removeClass("hidden");
 		var hasShots = "";
-			if(data.petfinder.pet.options.length >= 1 && data.petfinder.pet.options.option[0].$t=="hasShots"){
+			if(data.petfinder.pet.options.option.length >= 1 && data.petfinder.pet.options.option[0].$t=="hasShots"){
 				hasShots="Yes";
 			}
 			else{
 				hasShots="No";
 			}
 		var altered = "";
-			if(data.petfinder.pet.options.length >= 2 && data.petfinder.pet.options.option[1].$t=="altered"){
+			if(data.petfinder.pet.options.option.length >= 2 && data.petfinder.pet.options.option[1].$t=="altered"){
 				altered="Yes";
 			}
 			else{
 				altered="No";
 			}
 		var housetrained = "";
-			if(data.petfinder.pet.options.length >= 3 && data.petfinder.pet.options.option[2].$t=="housetrained"){
+			if(data.petfinder.pet.options.option.length >= 3 && data.petfinder.pet.options.option[2].$t=="housetrained"){
 				housetrained="Yes";
 			}
 			else{
