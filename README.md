@@ -1,6 +1,9 @@
 #Petfinder App
 
+##Main Page
 ![Alt](/images/petMainPage.PNG "Main Page")
+
+##Pet Detail Page
 ![Alt](/images/petDetailPage.PNG "Detail Page")
 
 ##Summary
